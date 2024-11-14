@@ -46,8 +46,8 @@ zstyle ':vcs_info:git:*' actionformats $'%{\C-[[32m%}-[%{\C-[[34m%}%m%u%c%{\C-[[
 # PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
 # PROMPT="%{$fg[green]%}%n@%m %~ %{$reset_color%}%#> "
 # PROMPT+="\$vcs_info_msg_0_ "
-PROMPT='%F{%(#.blue.green)}┌─%{$fg[cyan]%}$CONDA_DEFAULT_ENV%{$fg[green]%}─%{$fg[cyan]%}`basename $(dirname $VIRTUAL_ENV 2>/dev/null) 2>/dev/null`%{$fg[green]%}─%{$fg[cyan]%}`basename "$VIRTUAL_ENV"`%{$fg[green]%}─(%B%F{%(#.red.blue)}%n%(#.💀.🔓)%m%b%F{%(#.blue.green)})-[%B%F{%(#.blue.white)}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]$vcs_info_msg_0_ 
-%F{%(#.blue.green)}└─%B%(#.%F{red}#.%F{blue}+>)%b%F{reset} '
+PROMPT='%F{%(#.blue.green)}╭─%{$fg[cyan]%}$CONDA_DEFAULT_ENV%{$fg[green]%}─%{$fg[cyan]%}`basename $(dirname $VIRTUAL_ENV 2>/dev/null) 2>/dev/null`%{$fg[green]%}─%{$fg[cyan]%}`basename "$VIRTUAL_ENV"`%{$fg[green]%}─(%B%F{%(#.red.blue)}%n%(#.💀.🔓)%m%b%F{%(#.blue.green)})-[%B%F{%(#.blue.white)}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]$vcs_info_msg_0_
+%F{%(#.blue.green)}╰─%B%(#.%F{red}#.%F{blue}|>)%b%F{reset}'
 
 
 # disables venv prompt mention
