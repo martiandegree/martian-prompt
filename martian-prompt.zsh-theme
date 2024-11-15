@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 ## autoload vcs and colors
 autoload -Uz vcs_info
