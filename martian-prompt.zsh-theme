@@ -53,7 +53,7 @@ zstyle ':vcs_info:*' unstagedstr '*'
     behind=${ahead_and_behind[2]}
 
     (( $ahead )) && gitstatus+=( "%{$fg[cyan]%}⇡${ahead}" )
-    (( $behind )) && gitstatus+=( "%{$fg[magenta]%}⇣${behind}" )
+    (( $behind )) && gitstatus+=( "%{$fg[yellow]%}⇣${behind}" )
 
     hook_com[misc]+="%{$fg[green]%}[${(j: :)gitstatus}%{$fg[green]%}]"
 }
