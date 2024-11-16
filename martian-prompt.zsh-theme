@@ -12,37 +12,32 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
-
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' check-for-untracked true # Detects untracked files
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' unstagedstr '*'
-zstyle ':vcs_info:*' untrackedstr '!'
 
 # add a function to check for untracked files in the directory.
 # from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 ### Display the existence of files not yet known to VCS
 
-### git: Show marker (T) if there are untracked files in repository
+### git: Show marker (!) if there are untracked files in repository
 # Make sure you have added staged to your 'formats':  %c
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
-# +vi-git-untracked(){
-#     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-#         git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
-#         # This will show the marker if there are any untracked files in repo.
-#         # If instead you want to show the marker only if there are untracked
-#         # files in $PWD, use:
-#         #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-#         hook_com[staged]+='T'
-#     fi
-# }
-
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+        # This will show the marker if there are any untracked files in repo.
+        # If instead you want to show the marker only if there are untracked
+        # files in $PWD, use:
+        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
+        hook_com[staged]+='!'
+    fi
+}
 
 ### Compare local changes to remote changes
 ### git: Show +N/-N when your local branch is ahead-of or behind remote HEAD.
 # Make sure you have added misc to your 'formats':  %m
-zstyle ':vcs_info:git*+set-message:*' hooks git-st
+
 +vi-git-st() {
     local ahead behind
     local -a gitstatus
@@ -63,8 +58,10 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-st
     hook_com[misc]+="%{$fg[green]%}[${(j: :)gitstatus}%{$fg[green]%}]"
 }
 
+# zstyle ':vcs_info:git*+set-message:*' hooks git-st
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 zstyle ':vcs_info:git:*' formats "%{$fg[green]%}-%{$fg[green]%}[%{$fg[red]%}%c%u%{$fg[yellow]%}%{$fg[blue]%}%b%{$fg[green]%}]%m"
-zstyle ':vcs_info:git:*' actionformats "%{$fg[green]%}-%{$fg[green]%}[%{$fg[red]%}%u%c%{$fg[yellow]%}%{$fg[blue]%}%b%{$fg[green]%}]%{$fg[green]%}[%{$fg[magenta]%}%a%{$fg[green]%}]%m"
+zstyle ':vcs_info:git:*' actionformats "%{$fg[green]%}-%{$fg[green]%}[%{$fg[red]%}%c%u%{$fg[yellow]%}%{$fg[blue]%}%b%{$fg[green]%}]%{$fg[green]%}[%{$fg[magenta]%}%a%{$fg[green]%}]%m"
 
 # Function to replace ~ with 🏠 in directory path
 replace_home_icon() {
