@@ -55,7 +55,7 @@ zstyle ':vcs_info:*' unstagedstr '*'
     (( $ahead )) && gitstatus+=( "%{$fg[cyan]%}⇡${ahead}" )
     (( $behind )) && gitstatus+=( "%{$fg[yellow]%}⇣${behind}" )
 
-    hook_com[misc]+="%{$fg[green]%}[${(j: :)gitstatus}%{$fg[green]%}]"
+    (( ${#gitstatus[@]} )) && hook_com[misc]+="%{$fg[green]%}[${(j: :)gitstatus}%{$fg[green]%}]"
 }
 
 # zstyle ':vcs_info:git*+set-message:*' hooks git-st
