@@ -21,7 +21,8 @@ zstyle ':vcs_info:*' unstagedstr '*'
 ### Display the existence of files not yet known to VCS
 
 ### git: Show marker (!) if there are untracked files in repository
-# Make sure you have added staged to your 'formats':  %c
+# untracked files can only exist in the unstaged area
+# Make sure you have added unstaged to your 'formats':  %u
 
 +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
@@ -30,7 +31,7 @@ zstyle ':vcs_info:*' unstagedstr '*'
         # If instead you want to show the marker only if there are untracked
         # files in $PWD, use:
         #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-        hook_com[staged]+='!'
+        hook_com[unstaged]+='!'
     fi
 }
 
