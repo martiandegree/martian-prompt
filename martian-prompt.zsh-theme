@@ -77,8 +77,10 @@ replace_home_icon() {
 }
 
 # format our main prompt for hostname current folder, and permissions.
+# The exit status can be set with --> %(?:%{$fg_bold[green]%}|> :%{$fg_bold[red]%}|> )
+
 PROMPT='%F{%(#.blue.green)}╭─%{$fg[cyan]%}$CONDA_DEFAULT_ENV%{$fg[green]%}─%{$fg[cyan]%}`basename $(dirname $VIRTUAL_ENV 2>/dev/null) 2>/dev/null`%{$fg[green]%}─%{$fg[cyan]%}`basename "$VIRTUAL_ENV"`%{$fg[green]%}─(%B%F{%(#.red.blue)}%n%(#.💀.🔓)%m%b%F{%(#.blue.green)})-[%B%F{%(#.blue.white)}%(6~.%-1~/…/%4~.`replace_home_icon`)%b%F{%(#.blue.green)}]$vcs_info_msg_0_
-%F{%(#.blue.green)}╰─%B%(#.%F{red}#.%F{blue}|>)%b%F{reset}'
+%F{%(#.blue.green)}╰─%B%(#.%F{red}#.%(?:%F{blue}|>:%F{magenta}|>)%b%F{reset}'
 
 # disables venv prompt mention
 export VIRTUAL_ENV_DISABLE_PROMPT=1
